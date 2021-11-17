@@ -1,0 +1,22 @@
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Teacher information</title>
+        <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <div>
+                <div>
+                    <h2 th:text="${student.name}"></h2>
+                    <p><span><strong>E-mail: </strong></span><span th:text="${student.email}"></span></p>
+                    <p><span><strong>Phone number: </strong></span><span th:text="${student.phoneNumber}"></span></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

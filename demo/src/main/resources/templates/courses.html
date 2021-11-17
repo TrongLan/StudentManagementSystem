@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Courses</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://localhost:8080">News</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Courses
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/courses">All courses</a>
+                                    <a class="dropdown-item" href="#">Current Term</a>
+                                </div>
+                            </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="about_us.html">About us</a>
+                    </li>
+                </ul>
+            </div>                        
+        </nav>
+        
+        <div class ="container">
+            <div class = "row justify-content-center">
+                    <h1> List Courses </h1>
+            </div>
+<!--            <div class = "row">
+                    <div class = "col-lg-3">
+                            <a th:href = "@{/courses/new}" class = "btn btn-primary btn-sm mb-3"> Add Course </a>
+                    </div>
+            </div>-->
+            <table class = "table table-striped table-bordered">
+                <thead class = "table-dark">
+                        <tr>
+                                <th> Term </th>
+                                <th> Name </th>
+                                <th> Teacher </th>
+                                <th> Tuition fee (VND) </th>
+                                <th> Max number of students </th>                                       
+                                <th> Detail </th>
+                        </tr>
+                </thead>
+
+                <tbody>
+                        <tr th:each = "course: ${courses}">
+                                <td th:text = "${course.term}"></td>
+                                <td th:text = "${course.name}"></td>
+                                <td><a style="color: black" th:href="@{teacher/info/{id}(id=${course.teacher.id})}" th:text = "${course.teacher.name}"></a></td>
+                                <td th:text = "${course.fee}"></td>
+                                <td th:text = "${course.studentNumber}"></td>
+                                <td><!--
+                                    <a th:href = "@{/students/edit/{id}(id=${student.id})}"
+                                     class = "btn btn-primary">Update</a>
+
+                                    <a th:href = "@{/students/{id}(id=${student.id})}"
+                                     class = "btn btn-danger">Delete</a>
+                                    <a href="#">Student List</a>
+                                    -->
+                                    <a th:href="@{{name}/{term} (name=${course.name}, term=${course.term})}" class = "stretched-link">Student List</a>
+
+                                    <!--<a href = "#" class = "btn btn-danger">Delete</a>-->
+                                    <!--<a href="#">Student List</a>-->
+                                </td>
+                        </tr>
+                </tbody>
+
+            </table>
+		
+	</div>
+    </body>
+</html>

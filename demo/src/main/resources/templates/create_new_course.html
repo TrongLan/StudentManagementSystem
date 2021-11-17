@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>New course</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://localhost:8080">News</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Courses
+                                 </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/courses">All courses</a>
+                                    <a class="dropdown-item" href="#">Current Term</a>
+                                </div>
+                            </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="about_us.html">About us</a>
+                    </li>
+                </ul>
+            </div>                        
+        </nav>
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <form th:action="@{/courses}" th:object = "${course}" method="POST">
+                <h2 class="display-4 py-2 text-truncate">NEW COURSE</h2>
+<!--                <div class="mb-3">
+                    <label class="form-label">Code</label>
+                    <input 
+                        class="form-control"
+                        placeholder="Enter course code" 
+                        type="text" 
+                        name="code"
+                        th:field="*{code}"
+                    />
+                </div>
+                <div class="mb-3">-->
+                    <label class="form-label">Term</label>
+                    <input
+                        class="form-control"
+                        placeholder="Enter term" 
+                        type="text" 
+                        name="term"
+                        th:field="*{term}"
+                        required
+                    />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input 
+                        placeholder="Enter a name" 
+                        type="text" 
+                        name="name"
+                        th:field="*{name}"
+                        required
+                        class="form-control"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Teacher ID</label>
+                    <input 
+                        placeholder="Enter an ID" 
+                        type="text" 
+                        name="teacher_id"
+                        th:field="*{teacher}"
+                        class="form-control"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fee</label>
+                    <input 
+                        placeholder="Enter a number" 
+                        type="number" 
+                        name="fee"
+                        th:field="*{fee}"
+                        class="form-control"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Max students</label>
+                    <input 
+                        placeholder="Enter a number" 
+                        type="number" 
+                        name="student_number"
+                        th:field="*{studentNumber}"
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
