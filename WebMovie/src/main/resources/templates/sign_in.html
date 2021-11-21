@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Sign in</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <form th:action="@{/all-users}" th:object = "${user}" method="POST">
+                <h2 class="display-4 py-2 text-truncate">SIGN IN</h2>
+                <div class="mb-3">
+                    <label class="form-label">Account ID</label>
+                    <input
+                        class="form-control"
+                        placeholder="Enter your account id" 
+                        type="text" 
+                        name="acc_id"
+                        th:field="*{acc_id}"
+                        required
+                    />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nickname</label>
+                    <input 
+                        placeholder="Enter your nickname" 
+                        type="text" 
+                        name="nickname"
+                        th:field="*{nickname}"
+                        required
+                        class="form-control"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Create your password</label>
+                    <input 
+                        placeholder="Enter an your password" 
+                        type="password" 
+                        name="password"
+                        th:field="*{password}"
+                        class="form-control"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
