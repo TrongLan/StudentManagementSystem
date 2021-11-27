@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Income</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-sm-start" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Admin.html">Back</a>
+                    </li>
+                </ul>
+            </div>                        
+        </nav>
+        
+        <div class ="container">
+            <div class = "row justify-content-center">
+                    <h1> InCome </h1>
+            </div>
+            <table class = "table table-striped table-bordered">
+                <thead class = "table-dark">
+                        <tr>
+                                <th> STT </th>
+                                <th> Tên khóa học </th>
+                                <th> Giá tiền (VND) </VND></th>
+                                <th> Số hoc viên tối đa </th>
+                                <th> Số học sinh đã đóng tiền </th>                                       
+                                <th> Thành tiền </th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr th:each = "course: ${courses}">
+                        <td th:text = "${course.Name}"></td>
+                        <td th:text = "${course.Cost}"></td>
+                        <td th:text = "${course.Number_of_Student}"></td>
+                        <td>40</td>
+                        <td th:text = "${course.into_money()}"></td>
+                </tr>
+                </tbody>
+            </table>
+		
+	</div>
+    </body>
+</html>

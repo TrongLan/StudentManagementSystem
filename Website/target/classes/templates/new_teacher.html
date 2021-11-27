@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Add teacher</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-color: rgb(8,17,59);
+            }
+            h2{
+                background-color: #2574A9;
+                color: whitesmoke;
+                border-radius: 10px;
+                padding: 10px;
+                text-align: center;
+            }
+            label{
+                color: #2574A9;
+                font-size: 24px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class ="col-lg-6 col-md-6 col-sm-6 container">            
+            <form class="row g-3" th:action="@{/all-teachers}" th:object = "${newteacher}" method="POST">
+                <h2 class="display-4 py-2 text-truncate col-md-12">CREATE NEW TEACHER</h2>
+                <div class="col-md-4">
+                    <label class="form-label">Teacher ID</label>
+                    <input
+                        class="form-control"
+                        placeholder="Enter teacher id" 
+                        type="text" 
+                        name="id"
+                        th:field="*{id}"
+                        required
+                    />
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label">Full name</label>
+                    <input 
+                        placeholder="Enter a full name" 
+                        type="text" 
+                        name="ten"
+                        th:field="*{ten}"
+                        required
+                        class="form-control"
+                    />
+                </div>
+                <div class="col-10">
+                    <label class="form-label">Birthday</label>
+                    <input 
+                        placeholder="Choose date of birth" 
+                        type="date" 
+                        name="ngay_sinh"
+                        th:field="*{ngaySinh}"
+                        class="form-control"
+                    />
+                </div>
+                <div class="col-2">
+                    <label class="form-label">Sex</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sex" id="exampleRadios1" value="Male" th:field="*{gioiTinh}">
+                        <label class="form-check-label" for="exampleRadios1">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Female" th:field="*{gioiTinh}">
+                        <label class="form-check-label" for="exampleRadios2">
+                            Female
+                        </label>
+                    </div>
+<!--                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="Other" th:field="*{gioiTinh}">
+                        <label class="form-check-label" for="exampleRadios3">
+                            Other
+                        </label>
+                    </div>-->
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Email</label>
+                    <input 
+                        placeholder="Enter an email address" 
+                        type="email" 
+                        name="email"
+                        th:field="*{email}"
+                        class="form-control"
+                        required
+                    />
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label">Phone number</label>
+                    <input 
+                        placeholder="Enter a phone number" 
+                        type="text" 
+                        name="phone_number"
+                        th:field="*{soDienThoai}"
+                        class="form-control"
+                    />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Salary</label>
+                    <input 
+                        placeholder="Enter a number" 
+                        type="number"
+                        min="2000000"
+                        max="5000000"
+                        name="salary"
+                        th:field="*{luong}"
+                        class="form-control"
+                    />
+                </div>
+                
+                <div class="form-group col-md-12" style="margin-top: 20px">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
