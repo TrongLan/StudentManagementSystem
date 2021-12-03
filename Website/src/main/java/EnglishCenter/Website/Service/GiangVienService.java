@@ -7,4 +7,6 @@ public interface GiangVienService {
     GiangVien TaoGiangVienMoi(GiangVien hv);
     void xoaGiangVien(String id);
     List<GiangVien> timKiemGiangVienVoiTuKhoa(String keyword);
+    void nghiDay(String id);
+    GiangVien chonGiangVien(String id);
 }

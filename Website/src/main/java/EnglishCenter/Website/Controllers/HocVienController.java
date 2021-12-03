@@ -34,8 +34,9 @@ public class HocVienController {
     @GetMapping("/new-student")
     public String taoHocVien(Model mod){
         HocVien hv = new HocVien();
-        mod.addAttribute("newstudent", hv);
-        return "new_student";
+        mod.addAttribute("choosenstudent", hv);
+        mod.addAttribute("situation", "create_new");
+        return "create_new_or_edit_student";
     }
     @GetMapping("/all-students/{id}")
     public String xoaHocVienTheoID(@PathVariable String id){
@@ -50,5 +51,19 @@ public class HocVienController {
         mod.addAttribute("key", key);
         mod.addAttribute("type", "HV");
         return "search_result";
+    }
+    @GetMapping("/all-students/update/{id}")
+    public String suaThongTinHocVien(@PathVariable String id, Model mod){
+        HocVien hv = hvService.chonHocVien(id);
+        mod.addAttribute("situation", "update");
+//        gvService.nghiDay(id);
+//        gvService.xoaGiangVien(id);
+        mod.addAttribute("choosenstudent", hv);
+        return "create_new_or_edit_student";
+    }
+    @PostMapping("/all-students/update/{id}")
+    public String capNhatGiangVien(@ModelAttribute("student") HocVien hv, @PathVariable String id){
+        hvService.TaoHocVienMoi(hv);
+        return "redirect:/all-teachers";
     }
 }

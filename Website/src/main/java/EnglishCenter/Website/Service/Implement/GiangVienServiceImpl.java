@@ -1,8 +1,10 @@
 package EnglishCenter.Website.Service.Implement;
 
+import EnglishCenter.Website.Entities.Course;
 import EnglishCenter.Website.Entities.GiangVien;
 import EnglishCenter.Website.Repositories.GiangVienRepo;
 import EnglishCenter.Website.Service.GiangVienService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,16 @@ public class GiangVienServiceImpl implements GiangVienService{
     @Override
     public List<GiangVien> timKiemGiangVienVoiTuKhoa(String keyword) {
         return gvRepo.timKiemGiangVienVoiTuKhoa(keyword);
+    }
+
+    @Override
+    public void nghiDay(String id) {
+        gvRepo.ngungDayTatCaKhoaHoc(id);
+    }
+
+    @Override
+    public GiangVien chonGiangVien(String id) {
+        return gvRepo.getById(id);
     }
 
     

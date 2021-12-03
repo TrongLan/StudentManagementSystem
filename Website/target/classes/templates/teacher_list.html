@@ -90,7 +90,7 @@ and open the template in the editor.
              .sidebar-navigation .header {
                  font-size: 12px;
                  text-transform: uppercase;
-                 background-color: darkslategray;
+                 background-color: midnightblue;
                  padding: 10px 15px 10px 30px;
              }
 
@@ -105,7 +105,7 @@ and open the template in the editor.
     </head>
     <body style="background-color: rgb(8, 17, 59)">
         <div class="sidebar-container">
-            <div class="sidebar-logo"> EnglishCenter </div>
+            <div class="sidebar-logo"> WESTVIEW </div>
             <ul class="sidebar-navigation">
                 <li class="header">Advertising & Statistic</li>
                 <li>
@@ -148,7 +148,7 @@ and open the template in the editor.
                         <th></th>
                         <th> Teacher ID </th>
                         <th> Name </th>
-                        <th> Sex </th>
+                        <th> Gender </th>
                         <th> Date of birth </th>
                         <th> Email </th>
                         <th> Phone number </th>
@@ -157,8 +157,10 @@ and open the template in the editor.
                 </thead>
                 <tbody style="background-color: whitesmoke">
                     <tr th:each = "teacher : ${teachers}">
-                        <td style="text-align: center">
-                            <div><a style="color: red" th:href = "@{/all-teachers/{id}(id=${teacher.id})}"><i class="fa fa-trash"></i></a></div> 
+                        <td style=" display: flex; justify-content: space-between">
+                            <div><a style="color: lime" th:href = "@{/all-teachers/update/{id} (id=${teacher.id})}"><i class="fa fa-edit"></i></a></div> 
+
+                            <div><a style="color: red" th:href = "@{/all-teachers/{id} (id=${teacher.id})}"><i class="fa fa-trash"></i></a></div> 
                         </td>
                         <td th:text="${teacher.id}"></td>
                         <td th:text="${teacher.ten}"></td>

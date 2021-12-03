@@ -105,7 +105,7 @@ and open the template in the editor.
     </head>
     <body style="background-color: rgb(8, 17, 59)">
         <div class="sidebar-container">
-            <div class="sidebar-logo"> EnglishCenter </div>
+            <div class="sidebar-logo"> WESTVIEW </div>
             <ul class="sidebar-navigation">
                 <li class="header">Advertising & Statistic</li>
                 <li>
@@ -138,7 +138,7 @@ and open the template in the editor.
                     </form>
                     <div class = "row">
                         <div class = "col-lg-3">
-                            <a th:href = "@{/new-course}" class="btn btn-outline-primary"><i class="fa fa-plus"></i></a>
+                            <a th:href = "@{all-courses/new-course}" class="btn btn-outline-primary"><i class="fa fa-plus"></i></a>
                         </div>
                     </div>                
                 </div>
@@ -158,15 +158,16 @@ and open the template in the editor.
                     </thead>
                     <tbody style="background-color: whitesmoke">
                         <tr th:each = "course: ${courses}">
-                            <td style="text-align: center">
+                            <td style="display: flex; justify-content: space-between">
+                                <div><a style="color: lime" th:href = "@{/all-courses/update/{id}(id=${course.id})}"><i class="fa fa-edit"></i></a></div>
                                 <div><a style="color: red" th:href = "@{/all-courses/{id}(id=${course.id})}"><i class="fa fa-trash"></i></a></div> 
                             </td>
                             <td th:text = "${course.id}"></td>
                             <td th:text = "${course.ten}"></td>
                             <td th:text = "${course.hocPhi}+' VND'"></td>
                             <td th:text = "${course.thoiLuong}+' weeks'"></td>
-                            <td><!--<a style="color: black" th:href="@{teacher/info/{id}(id=${course.teacher.Name})}"></a>--></td>
-                            <td style="text-align: center"><a href="#" th:text = "'0/'+${course.soHocVien}"></a></td>
+                            <td th:text = "${course?.gv?.ten}"></td>
+                            <td style="text-align: center" th:text = "${course.getEnrolled().size()}+'/'+${course.soHocVien}"></td>
                         </tr>
                     </tbody>
                 </table>

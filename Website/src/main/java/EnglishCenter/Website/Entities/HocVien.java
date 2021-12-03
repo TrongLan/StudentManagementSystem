@@ -1,6 +1,8 @@
 package EnglishCenter.Website.Entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,7 +12,7 @@ public class HocVien {
     @Id
     @Column(name = "id",length = 5,nullable = false,unique = true)
     private String id;
-    @Column(name = "ten", length = 20, nullable = false)
+    @Column(name = "ten", length = 30, nullable = false)
     private String ten;
     @Column(name = "ngay_sinh", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -21,6 +23,8 @@ public class HocVien {
     private String email;
     @Column(name = "so_dien_thoai", nullable = true, length = 10)
     private String soDienThoai;
+    @OneToMany(mappedBy = "hv", cascade = CascadeType.REMOVE)
+    private List<Enroll> enrolls;
 
     public HocVien(String id, String ten, LocalDate ngaySinh, String gioiTinh, String email, String soDienThoai) {
         this.id = id;
@@ -29,6 +33,7 @@ public class HocVien {
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.soDienThoai = soDienThoai;
+        this.enrolls = new ArrayList<>();
     }
 
     public HocVien() {
@@ -80,6 +85,14 @@ public class HocVien {
 
     public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
+    }
+
+    public List<Enroll> getEnrolls() {
+        return enrolls;
+    }
+
+    public void setEnrolls(List<Enroll> enrolls) {
+        this.enrolls = enrolls;
     }
     
 }

@@ -34,15 +34,31 @@ public class CourseController {
         cService.xoaKhoaHoc(id);
         return "redirect:/all-courses";
     }
-    @GetMapping("/new-course")
-    public String taoGiangVien(Model mod){
+    @GetMapping("/all-courses/new-course")
+    public String taoKhoaHoc(Model mod){
         Course c = new Course();
-        mod.addAttribute("newcourse", c);
-        return "new_course";
+        mod.addAttribute("situation", "create_new");
+        mod.addAttribute("choosencourse", c);
+        mod.addAttribute("teachers", cService.danhSachGiangVien());
+        return "create_new_or_edit_course";
     }
     @PostMapping("/all-courses")
-    public String themGiangvienMoi(@ModelAttribute("course") Course c){
+    public String themKhoaHocMoi(@ModelAttribute("course") Course c){
         cService.taoKhoaHocMoi(c);
         return "redirect:/all-courses";
     }
+    @GetMapping("/all-courses/update/{id}")
+    public String suaThongTinKhoaHoc(@PathVariable String id, Model mod){
+        mod.addAttribute("choosencourse",cService.getCourseByID(id));
+        mod.addAttribute("situation", "update");
+        mod.addAttribute("teachers", cService.danhSachGiangVien());
+//        cService.xoaKhoaHoc(id);
+        return "create_new_or_edit_course";
+    }
+    @PostMapping("/all-courses/update/{id}")
+    public String capNhatKhoaHoc(@ModelAttribute("course") Course c, @PathVariable String id){
+        cService.taoKhoaHocMoi(c);
+        return "redirect:/all-courses";
+    }
+    
 }

@@ -8,4 +8,5 @@ public interface HocVienService {
     HocVien TaoHocVienMoi(HocVien hv);
     void xoaHocVien(String id);
     List<HocVien> timKiemHocVienVoiTuKhoa(String keyword);
+    HocVien chonHocVien(String id);
 }

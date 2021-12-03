@@ -1,6 +1,7 @@
 package EnglishCenter.Website.Service.Implement;
 
 import EnglishCenter.Website.Entities.Course;
+import EnglishCenter.Website.Entities.GiangVien;
 import EnglishCenter.Website.Repositories.CourseRepo;
 import EnglishCenter.Website.Service.CourseService;
 import java.util.List;
@@ -34,5 +35,15 @@ public class CourseServiceImpl implements CourseService{
     public Course taoKhoaHocMoi(Course c) {
         return cRepo.save(c);
     }
-    
+
+    @Override
+    public Course getCourseByID(String id) {
+        return cRepo.getById(id);
+    }
+
+    @Override
+    public List<String[]> danhSachGiangVien() {
+        return cRepo.tatCaGiangVien();
+    }
+
 }

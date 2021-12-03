@@ -105,7 +105,7 @@ and open the template in the editor.
     </head>
     <body style="background-color: rgb(8,17,59)">
         <div class="sidebar-container">
-            <div class="sidebar-logo"> EnglishCenter </div>
+            <div class="sidebar-logo"> WESTVIEW </div>
             <ul class="sidebar-navigation">
                 <li class="header">Advertising & Statistic</li>
                 <li>
@@ -138,7 +138,7 @@ and open the template in the editor.
                         <th></th>
                         <th> Student ID </th>
                         <th> Name </th>
-                        <th> Sex </th>
+                        <th> Gender </th>
                         <th> Date of birth </th>
                         <th> Email </th>
                         <th> Phone number </th>
@@ -147,7 +147,7 @@ and open the template in the editor.
                         <th></th>
                         <th> Student ID </th>
                         <th> Name </th>
-                        <th> Sex </th>
+                        <th> Gender </th>
                         <th> Date of birth </th>
                         <th> Email </th>
                         <th> Phone number </th>
@@ -158,14 +158,15 @@ and open the template in the editor.
                         <th> Course ID </th>
                         <th> Name </th>
                         <th> Fee </th>
+                        <th> Time </th>
                         <th> Teacher </th>
                         <th> Status </th>
                     </tr>
                 </thead>
-                <tbody th:switch="${type}" style="background-color: whitesmoke">
-                    <tr th:case="'HV'" th:each = "item : ${results}">
+                <tbody style="background-color: whitesmoke; font-size: 15px">
+                    <tr th:if="${type}=='HV'" th:each = "item : ${results}">
                         <td style="text-align: center">
-                            <a style="color: red" th:href = "@{/all-students/{id}(id=${item.id})}"><i class="fa fa-trash"></i></a>     
+                            <div><a style="color: red" th:href = "@{/all-students/{id}(id=${item.id})}"><i class="fa fa-trash"></i></a></div>
                         </td>
                         <td th:text="${item.id}"></td>
                         <td th:text="${item.ten}"></td>
@@ -174,7 +175,7 @@ and open the template in the editor.
                         <td th:text="${item.email}"></td>
                         <td th:text="${item.soDienThoai}"></td>
                     </tr>
-                    <tr th:case="'GV'" th:each = "item : ${results}">
+                    <tr th:if="${type}=='GV'" th:each = "item : ${results}">
                         <td style="text-align: center">
                             <a style="color: red" th:href = "@{/all-teachers/{id}(id=${item.id})}"><i class="fa fa-trash"></i></a>     
                         </td>
@@ -184,16 +185,18 @@ and open the template in the editor.
                         <td th:text="${item.ngaySinh}"></td>
                         <td th:text="${item.email}"></td>
                         <td th:text="${item.soDienThoai}"></td>
-                        <td th:text="${item.luong}"></td>
+                        <td th:text="${item.luong}+' VND'"></td>
                     </tr>
-                    <tr th:case="'C'" th:each = "item : ${results}">
-                        <td style="text-align: center">
-                            <a style="color: red" th:href = "@{/all-courses/{id}(id=${item.id})}"><i class="fa fa-trash"></i></a>     
+                    <tr th:if="${type}=='C'" th:each = "item : ${results}">
+                        <td style="text-align: center; display: flex; justify-content: space-around">
+                            <div><a style="color: lime" th:href = "@{/all-courses/update/{id}(id=${item.id})}"><i class="fa fa-edit"></i></a></div>
+                            <div><a style="color: red" th:href = "@{/all-courses/{id}(id=${item.id})}"><i class="fa fa-trash"></i></a></div>     
                         </td>
                         <td th:text="${item.id}"></td>
                         <td th:text="${item.ten}"></td>
-                        <td th:text="${item.hocPhi}"></td>
-                        <td></td>
+                        <td th:text="${item.hocPhi+' VND'}"></td>
+                        <td th:text="${item.thoiLuong}+' weeks'"></td>
+                        <td th:text="${item?.gv?.ten}"></td>
                         <td style="text-align: center"><a href="#" th:text="'0/'+${item.soHocVien}"></a></td>
                         <!--<td th:text="${item.giangVien}"></td>
                         <td th:text="${item.trangThai()}"></td>-->

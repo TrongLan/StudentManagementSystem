@@ -1,7 +1,8 @@
 package EnglishCenter.Website.Entities;
 
 import java.time.LocalDate;
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,7 +12,7 @@ public class GiangVien {
     @Id
     @Column(name = "id",length = 5,nullable = false,unique = true)
     private String id;
-    @Column(name = "ten", length = 20, nullable = false)
+    @Column(name = "ten", length = 30, nullable = false)
     private String ten;
     @Column(name = "ngay_sinh", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -24,8 +25,11 @@ public class GiangVien {
     private String soDienThoai;
     @Column(name = "luong", nullable = false)
     private int luong;
-
+    @OneToMany(mappedBy = "gv")
+    List<Course> teaches;
+    
     public GiangVien() {
+        
     }
 
     public GiangVien(String id, String ten, LocalDate ngaySinh, String gioiTinh, String email, String soDienThoai, int luong) {
@@ -36,6 +40,7 @@ public class GiangVien {
         this.email = email;
         this.soDienThoai = soDienThoai;
         this.luong = luong;
+        this.teaches = new ArrayList<>();
     }
 
     public String getId() {
@@ -92,6 +97,14 @@ public class GiangVien {
 
     public void setLuong(int luong) {
         this.luong = luong;
+    }
+
+    public List<Course> getTeaches() {
+        return teaches;
+    }
+
+    public void setTeaches(List<Course> teaches) {
+        this.teaches = teaches;
     }
     
 }

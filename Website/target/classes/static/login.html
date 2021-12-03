@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Westview Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <style>
+            html, body {
+                font-family: "Lato", sans-serif;
+                background-color: rgb(8,17,59);
+                height: 100%;
+                width: 100%;
+            }
+
+            .sidenav {
+                height: 30%;
+                background-color: midnightblue;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .main {
+                margin: auto;
+                padding-top: 50px;
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            form{
+                font-size: 24px;
+            }
+            
+            form label{
+                color: lightskyblue;
+            }
+
+            .login-main-text{
+                text-align: left;
+                color: whitesmoke;
+            }
+            
+            .login-main-text h2{
+                font-size: 44px;
+                color: lightskyblue;
+                padding-right: 10px;
+                border-right: 3px lightskyblue solid;
+            }
+            #name{
+                background-color: lightskyblue;
+                border-radius: 10px;
+                color:whitesmoke;
+                padding: 5px 10px;
+            }
+            .login-main-text p{
+                color: rgba(255,255,255,0.3);
+                font-size: 20px;
+            }
+            @media only screen and (min-width: 900px){
+                html, body {
+                    display: flex;
+                    justify-content: center;
+                }
+                .sidenav {
+                    height: 100%;
+                    width: 550px;
+                }
+                .main{
+                    width: 600px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="sidenav">
+            <div class="login-main-text">
+                <p>Enjoy your work at</p>
+                <!--<br>-->
+                <h2>
+                    <div><span id="name">Westview</span> Academy</div>
+                </h2>
+            </div>
+        </div>
+        <div class="main">
+            <div class="col-lg-6 col-md-6 col-sm-6 container">
+               <form>
+                   <div class="form-group">
+                      <label>User Account</label>
+                      <input type="text" class="form-control" placeholder="Type your account here" required>
+                   </div>
+                   <div class="form-group">
+                      <label>Password</label>
+                      <input type="password" class="form-control" placeholder="Enter your password" reqiured>
+                   </div>
+                   <button type="submit" class="btn btn-outline-primary">Login</button>
+               </form>
+           </div>   
+        </div>
+        
+    </body>
+</html>

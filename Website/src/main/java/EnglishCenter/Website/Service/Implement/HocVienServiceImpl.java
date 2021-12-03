@@ -33,5 +33,10 @@ public class HocVienServiceImpl implements HocVienService{
     public List<HocVien> timKiemHocVienVoiTuKhoa(String keyword) {
         return hvRepo.timKiemHocVienVoiTuKhoa(keyword);
     }
+
+    @Override
+    public HocVien chonHocVien(String id) {
+        return hvRepo.getById(id);
+    }
     
 }

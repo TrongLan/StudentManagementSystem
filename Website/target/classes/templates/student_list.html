@@ -105,7 +105,7 @@ and open the template in the editor.
     </head>
     <body style="background-color: rgb(8, 17, 59)">
         <div class="sidebar-container">
-            <div class="sidebar-logo"> EnglishCenter </div>
+            <div class="sidebar-logo"> WESTVIEW </div>
             <ul class="sidebar-navigation">
                 <li class="header">Advertising & Statistic</li>
                 <li>
@@ -148,7 +148,7 @@ and open the template in the editor.
                         <th></th>
                         <th> Student ID </th>
                         <th> Name </th>
-                        <th> Sex </th>
+                        <th> Gender </th>
                         <th> Date of birth </th>
                         <th> Email </th>
                         <th> Phone number </th>
@@ -156,7 +156,8 @@ and open the template in the editor.
                 </thead>
                 <tbody style="background-color: whitesmoke">
                     <tr th:each = "student : ${students}">
-                        <td style="text-align: center">
+                        <td style="display: flex; justify-content: space-between">
+                            <div><a style="color: lime" th:href = "@{/all-students/update/{id}(id=${student.id})}"><i class="fa fa-edit"></i></a></div>
                             <div><a style="color: red" th:href = "@{/all-students/{id}(id=${student.id})}"><i class="fa fa-trash"></i></a></div> 
                         </td>
                         <td th:text="${student.id}"></td>
