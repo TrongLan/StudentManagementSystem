@@ -29,7 +29,7 @@ public class CourseController {
         mod.addAttribute("number_of_results", ds.size());
         return "search_result";
     }
-    @GetMapping("/all-courses/{id}")
+    @GetMapping("/all-courses/delete/{id}")
     public String xoaKhoaHocTheoID(@PathVariable String id){
         cService.xoaKhoaHoc(id);
         return "redirect:/all-courses";
@@ -42,10 +42,13 @@ public class CourseController {
         mod.addAttribute("teachers", cService.danhSachGiangVien());
         return "create_new_or_edit_course";
     }
-    @PostMapping("/all-courses")
+    @PostMapping("/all-courses/new-course")
     public String themKhoaHocMoi(@ModelAttribute("course") Course c){
-        cService.taoKhoaHocMoi(c);
-        return "redirect:/all-courses";
+        if(!cService.daTonTaiKhoaHoc(c.getId())){
+            cService.taoKhoaHocMoi(c);
+            return "redirect:/all-courses";
+        }
+        else return "message";
     }
     @GetMapping("/all-courses/update/{id}")
     public String suaThongTinKhoaHoc(@PathVariable String id, Model mod){

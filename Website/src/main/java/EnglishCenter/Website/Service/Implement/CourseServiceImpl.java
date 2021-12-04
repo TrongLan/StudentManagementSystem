@@ -32,7 +32,7 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public Course taoKhoaHocMoi(Course c) {
+    public Course taoKhoaHocMoi(Course c) {   
         return cRepo.save(c);
     }
 
@@ -44,6 +44,11 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public List<String[]> danhSachGiangVien() {
         return cRepo.tatCaGiangVien();
+    }
+
+    @Override
+    public boolean daTonTaiKhoaHoc(String id) {
+        return cRepo.existsById(id);
     }
 
 }

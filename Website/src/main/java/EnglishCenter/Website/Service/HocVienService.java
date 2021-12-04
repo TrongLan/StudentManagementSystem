@@ -9,4 +9,5 @@ public interface HocVienService {
     void xoaHocVien(String id);
     List<HocVien> timKiemHocVienVoiTuKhoa(String keyword);
     HocVien chonHocVien(String id);
+    boolean daTonTaiHocVien(String id);
 }

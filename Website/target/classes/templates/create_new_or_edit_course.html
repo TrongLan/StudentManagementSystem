@@ -1,7 +1,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title th:if="${situation}=='create_new'">Add students</title>
-        <title th:if="${situation}=='update'">Update students</title>
+        <title th:if="${situation}=='create_new'">Add course</title>
+        <title th:if="${situation}=='update'">Update course</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -26,9 +26,8 @@
     </head>
     <body>
         <div class ="col-lg-6 col-md-6 col-sm-6 container">
-            <form class="row g-3" th:action="@{/all-courses}" th:object = "${choosencourse}" method="POST">
-                <h2 th:if="${situation}=='create_new'" class="display-4 py-2 text-truncate col-md-12">CREATE NEW COURSE</h2>
-                <h2 th:unless="${situation}=='create_new'" class="display-4 py-2 text-truncate col-md-12">UPDATE COURSE</h2>
+            <form th:if="${situation}=='create_new'" class="row g-3" th:action="@{/all-courses/new-course}" th:object = "${choosencourse}" method="POST">
+                <h2 class="display-4 py-2 text-truncate col-md-12">CREATE NEW COURSE</h2>
                 <div class="col-md-4">
                     <label class="form-label">Course ID</label>
                     <input
@@ -99,8 +98,82 @@
                 </div>
                 
                 <div class="form-group col-md-12" style="margin-top: 20px">
-                    <button th:if="${situation}=='create_new'" type="submit" class="btn btn-primary">Add this course</button>
-                    <button th:unless="${situation}=='create_new'" type="submit" class="btn btn-primary">Accept changes</button>
+                    <button type="submit" class="btn btn-primary">Add this course</button>
+                </div>
+            </form>
+            <form th:if="${situation}=='update'" class="row g-3" th:action="@{/all-courses/update/{id} (id = ${choosencourse.id})}" th:object = "${choosencourse}" method="POST">
+                <h2 class="display-4 py-2 text-truncate col-md-12">UPDATE COURSE</h2>
+                <div class="col-md-4">
+                    <label class="form-label">Course ID</label>
+                    <input
+                        th:if="${situation}=='update'"
+                        class="form-control"
+                        type="text" 
+                        name="id"
+                        th:field="*{id}"
+                        readonly
+                    />
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label">Course name</label>
+                    <input 
+                        placeholder="Enter a name" 
+                        type="text" 
+                        name="ten"
+                        th:field="*{ten}"
+                        required
+                        class="form-control"
+                    />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Time</label>
+                    <input 
+                        placeholder="Enter a number" 
+                        type="number" 
+                        min="3"
+                        name="time"
+                        th:field="*{thoiLuong}"
+                        class="form-control"
+                        required
+                    />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Fee</label>
+                    <input 
+                        placeholder="Enter a number" 
+                        type="number" 
+                        min="1000000"
+                        step="100000"
+                        name="fee"
+                        th:field="*{hocPhi}"
+                        class="form-control"
+                        required
+                    />
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Teacher</label>
+                        <select class="custom-select" th:field="*{gv}" >
+                            <option th:value="NULL">Choose a teacher</option>
+                            <option th:each="teacher:${teachers}" th:value="${teacher[0]}" th:text="${teacher[1]}"></option>
+                        </select>     
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Max number of students</label>
+                    <input 
+                        placeholder="Enter a number" 
+                        type="number" 
+                        min="30"
+                        name="number_of_students"
+                        th:field="*{soHocVien}"
+                        class="form-control"
+                        required
+                    />
+                </div>
+                
+                <div class="form-group col-md-12" style="margin-top: 20px">
+                    <button type="submit" class="btn btn-primary">Accept changes</button>
                 </div>
             </form>
         </div>

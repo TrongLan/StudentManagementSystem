@@ -10,4 +10,5 @@ public interface CourseService {
     Course taoKhoaHocMoi(Course c);
     Course getCourseByID(String id);
     List<String[]> danhSachGiangVien();
+    boolean daTonTaiKhoaHoc(String id);
 }

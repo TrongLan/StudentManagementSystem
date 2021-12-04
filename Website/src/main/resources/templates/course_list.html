@@ -160,7 +160,7 @@ and open the template in the editor.
                         <tr th:each = "course: ${courses}">
                             <td style="display: flex; justify-content: space-between">
                                 <div><a style="color: lime" th:href = "@{/all-courses/update/{id}(id=${course.id})}"><i class="fa fa-edit"></i></a></div>
-                                <div><a style="color: red" th:href = "@{/all-courses/{id}(id=${course.id})}"><i class="fa fa-trash"></i></a></div> 
+                                <div><a style="color: red" th:href = "@{/all-courses/delete/{id}(id=${course.id})}"><i class="fa fa-trash"></i></a></div> 
                             </td>
                             <td th:text = "${course.id}"></td>
                             <td th:text = "${course.ten}"></td>

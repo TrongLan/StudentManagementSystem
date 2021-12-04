@@ -25,20 +25,23 @@ public class HocVienController {
         return "student_list";
     }
     
-    @PostMapping("/all-students")
+    @PostMapping("/all-students/new-student")
     public String themHocVienMoi(@ModelAttribute("student") HocVien hv){
-        hvService.TaoHocVienMoi(hv);
-        return "redirect:/all-students";
+        if(!hvService.daTonTaiHocVien(hv.getId())){
+            hvService.TaoHocVienMoi(hv);
+            return "redirect:/all-students";
+        }
+        else return "message";
     }
     
-    @GetMapping("/new-student")
+    @GetMapping("/all-students/new-student")
     public String taoHocVien(Model mod){
         HocVien hv = new HocVien();
         mod.addAttribute("choosenstudent", hv);
         mod.addAttribute("situation", "create_new");
         return "create_new_or_edit_student";
     }
-    @GetMapping("/all-students/{id}")
+    @GetMapping("/all-students/delete/{id}")
     public String xoaHocVienTheoID(@PathVariable String id){
         hvService.xoaHocVien(id);
         return "redirect:/all-students";
@@ -56,14 +59,12 @@ public class HocVienController {
     public String suaThongTinHocVien(@PathVariable String id, Model mod){
         HocVien hv = hvService.chonHocVien(id);
         mod.addAttribute("situation", "update");
-//        gvService.nghiDay(id);
-//        gvService.xoaGiangVien(id);
         mod.addAttribute("choosenstudent", hv);
         return "create_new_or_edit_student";
     }
     @PostMapping("/all-students/update/{id}")
-    public String capNhatGiangVien(@ModelAttribute("student") HocVien hv, @PathVariable String id){
+    public String capNhatHocVien(@ModelAttribute("student") HocVien hv, @PathVariable String id){
         hvService.TaoHocVienMoi(hv);
-        return "redirect:/all-teachers";
+        return "redirect:/all-students";
     }
 }

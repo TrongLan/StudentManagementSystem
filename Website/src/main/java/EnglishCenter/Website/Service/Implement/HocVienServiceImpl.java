@@ -38,5 +38,10 @@ public class HocVienServiceImpl implements HocVienService{
     public HocVien chonHocVien(String id) {
         return hvRepo.getById(id);
     }
+
+    @Override
+    public boolean daTonTaiHocVien(String id) {
+        return hvRepo.existsById(id);
+    }
     
 }

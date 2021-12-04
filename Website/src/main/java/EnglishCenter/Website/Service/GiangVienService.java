@@ -9,4 +9,5 @@ public interface GiangVienService {
     List<GiangVien> timKiemGiangVienVoiTuKhoa(String keyword);
     void nghiDay(String id);
     GiangVien chonGiangVien(String id);
+    boolean daTonTaiGiangVien(String id);
 }

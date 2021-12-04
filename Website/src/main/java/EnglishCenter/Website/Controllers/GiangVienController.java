@@ -21,19 +21,22 @@ public class GiangVienController {
         mod.addAttribute("teachers", gvService.danhSachTatCaGiangVien());
         return "teacher_list";
     }
-    @GetMapping("/new-teacher")
+    @GetMapping("/all-teachers/new-teacher")
     public String taoGiangVien(Model mod){
         GiangVien gv = new GiangVien();
         mod.addAttribute("choosenteacher", gv);
         mod.addAttribute("situation", "create_new");
         return "create_new_or_edit_teacher";
     }
-    @PostMapping("/all-teachers")
+    @PostMapping("/all-teachers/new-teacher")
     public String themGiangvienMoi(@ModelAttribute("teacher") GiangVien gv){
-        gvService.TaoGiangVienMoi(gv);
-        return "redirect:/all-teachers";
+        if(!gvService.daTonTaiGiangVien(gv.getId())){
+            gvService.TaoGiangVienMoi(gv);
+            return "redirect:/all-teachers";
+        }
+        else return "message";  
     }
-    @GetMapping("/all-teachers/{id}")
+    @GetMapping("/all-teachers/delete/{id}")
     public String xoaGiangVienTheoID(@PathVariable String id){
         gvService.nghiDay(id);
         gvService.xoaGiangVien(id);
@@ -53,8 +56,6 @@ public class GiangVienController {
     public String suaThongTinGiangVien(@PathVariable String id, Model mod){
         GiangVien gv = gvService.chonGiangVien(id);
         mod.addAttribute("situation", "update");
-//        gvService.nghiDay(id);
-//        gvService.xoaGiangVien(id);
         mod.addAttribute("choosenteacher", gv);
         return "create_new_or_edit_teacher";
     }

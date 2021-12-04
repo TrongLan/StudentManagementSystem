@@ -46,5 +46,10 @@ public class GiangVienServiceImpl implements GiangVienService{
         return gvRepo.getById(id);
     }
 
+    @Override
+    public boolean daTonTaiGiangVien(String id) {
+        return gvRepo.existsById(id);
+    }
+
     
 }

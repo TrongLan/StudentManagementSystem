@@ -137,7 +137,7 @@ and open the template in the editor.
                 </form>
                 <div class = "row">
                     <div class = "col-lg-3">
-                        <a th:href = "@{/new-student}" class="btn btn-outline-primary"><i class="fa fa-plus"></i></a>
+                        <a th:href = "@{all-students/new-student}" class="btn btn-outline-primary"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>                
             </div>
@@ -158,7 +158,7 @@ and open the template in the editor.
                     <tr th:each = "student : ${students}">
                         <td style="display: flex; justify-content: space-between">
                             <div><a style="color: lime" th:href = "@{/all-students/update/{id}(id=${student.id})}"><i class="fa fa-edit"></i></a></div>
-                            <div><a style="color: red" th:href = "@{/all-students/{id}(id=${student.id})}"><i class="fa fa-trash"></i></a></div> 
+                            <div><a style="color: red" th:href = "@{/all-students/delete/{id}(id=${student.id})}"><i class="fa fa-trash"></i></a></div> 
                         </td>
                         <td th:text="${student.id}"></td>
                         <td th:text="${student.ten}"></td>
