@@ -64,4 +64,12 @@ public class CourseController {
         return "redirect:/all-courses";
     }
     
+    @GetMapping("/course/{id}/student-list")
+    public String xemDanhSachHocVienCuaKhoaHoc(@PathVariable String id, Model mod){
+        Course c = cService.getCourseByID(id);
+        mod.addAttribute("course", c);
+        mod.addAttribute("teacher", c.getGv().getTen());
+        return "students_in_a_course";
+    }
+    
 }

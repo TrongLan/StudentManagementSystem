@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Westview Academy</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    </head>
+
+    <body style="background-color: rgb(8, 17, 59)">
+        <nav class="navbar navbar-expand-lg" style="background-color: midnightblue; color: whitesmoke; display: flex; justify-content: space-between">
+            <div class="navbar-brand">WESTVIEW ACADEMY</div>
+            
+            <div class="nav-item dropdown">
+                <div th:text="'Welcome, '+${teacher}" class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Edit profile</a>
+                      <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </div>
+        </nav>
+        <main class ="content-container container">
+            <div class = "row justify-content-center" style="background-color: #2574A9; color: whitesmoke; border-radius: 10px; margin: 20px auto">
+                <h1 th:text="${course.id}+'-'+${course.ten}"></h1>
+            </div>
+            <table class = "table table-bordered">
+                <thead class = "table-dark" style="background-color: midnightblue">
+                        <tr>
+                            <th> Student ID </th>
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Phone number </th>
+                        </tr>
+                </thead>
+                <tbody style="background-color: whitesmoke">
+                    <tr th:each = "c: ${course.enrolled}">
+                        <td th:text = "${c.hv.id}"></td>
+                        <td th:text = "${c.hv.ten}"></td>
+                        <td th:text = "${c.hv.email}"></td>
+                        <td th:text = "${c.hv.soDienThoai}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+            
+    </body>
+</html>

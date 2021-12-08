@@ -64,4 +64,26 @@ public class GiangVienController {
         gvService.TaoGiangVienMoi(gv);
         return "redirect:/all-teachers";
     }
+    
+    @GetMapping("/teacher/{id}")
+    public String manHinhGiangVien(@PathVariable String id, Model mod){
+        GiangVien gv = gvService.chonGiangVien(id);
+        mod.addAttribute("teacher", gv);
+        return "teacher_view";
+    }
+    
+    @GetMapping("/profile/teacher/{id}")
+    public String giangVienChinhSuaProfile(@PathVariable String id, Model mod){
+        GiangVien gv = gvService.chonGiangVien(id);
+        mod.addAttribute("teacher", gv);
+        boolean is_male = true;
+        if(gv.getGioiTinh().equalsIgnoreCase("female")) is_male = false;
+        mod.addAttribute("check", is_male);
+        return "teacher_profile";
+    }
+    @PostMapping("/profile/teacher/{id}")
+    public String giangVienCapNhatProfile(@ModelAttribute("teacher") GiangVien gv, @PathVariable String id){
+        gvService.TaoGiangVienMoi(gv);
+        return "redirect:/teacher/{id}";
+    }
 }
