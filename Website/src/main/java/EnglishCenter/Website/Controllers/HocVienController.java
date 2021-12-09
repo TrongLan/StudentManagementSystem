@@ -2,6 +2,7 @@ package EnglishCenter.Website.Controllers;
 
 import EnglishCenter.Website.Entities.HocVien;
 import EnglishCenter.Website.Service.HocVienService;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HocVienController {
     private HocVienService hvService;
-
+    private boolean add_fail;
+    
     public HocVienController(HocVienService hvService) {
         this.hvService = hvService;
+        this.add_fail = false;
     }
     
     @GetMapping("/all-students")
@@ -30,7 +33,10 @@ public class HocVienController {
             hvService.TaoHocVienMoi(hv);
             return "redirect:/all-students";
         }
-        else return "message";
+        else {
+            add_fail = true;
+            return "redirect:/all-students/new-student";
+        }
     }
     
     @GetMapping("/all-students/new-student")
@@ -38,6 +44,8 @@ public class HocVienController {
         HocVien hv = new HocVien();
         mod.addAttribute("choosenstudent", hv);
         mod.addAttribute("situation", "create_new");
+        mod.addAttribute("add_fail", add_fail);
+        add_fail = false;
         return "create_new_or_edit_student";
     }
     @GetMapping("/all-students/delete/{id}")

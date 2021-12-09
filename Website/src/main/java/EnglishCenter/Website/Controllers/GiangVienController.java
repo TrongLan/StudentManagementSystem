@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class GiangVienController {
     private GiangVienService gvService;
-
+    private boolean add_fail;
+    
     public GiangVienController(GiangVienService gvService) {
         this.gvService = gvService;
+        this.add_fail = false;
     }
     @GetMapping("/all-teachers")
     public String xemDanhSachTatCaHocVien(Model mod){
@@ -26,6 +28,8 @@ public class GiangVienController {
         GiangVien gv = new GiangVien();
         mod.addAttribute("choosenteacher", gv);
         mod.addAttribute("situation", "create_new");
+        mod.addAttribute("add_fail", add_fail);
+        add_fail = false;
         return "create_new_or_edit_teacher";
     }
     @PostMapping("/all-teachers/new-teacher")
@@ -34,7 +38,10 @@ public class GiangVienController {
             gvService.TaoGiangVienMoi(gv);
             return "redirect:/all-teachers";
         }
-        else return "message";  
+        else {
+            add_fail = true;
+            return "redirect:/all-teachers/new-teacher";
+        }  
     }
     @GetMapping("/all-teachers/delete/{id}")
     public String xoaGiangVienTheoID(@PathVariable String id){

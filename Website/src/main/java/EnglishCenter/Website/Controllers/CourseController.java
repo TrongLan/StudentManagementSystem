@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class CourseController {
     private CourseService cService;
+    private boolean add_fail;
 
     public CourseController(CourseService cService) {
         this.cService = cService;
+        this.add_fail = false;
     }
 
     @GetMapping("/all-courses")
@@ -34,12 +36,17 @@ public class CourseController {
         cService.xoaKhoaHoc(id);
         return "redirect:/all-courses";
     }
+    
+    
     @GetMapping("/all-courses/new-course")
     public String taoKhoaHoc(Model mod){
         Course c = new Course();
         mod.addAttribute("situation", "create_new");
         mod.addAttribute("choosencourse", c);
         mod.addAttribute("teachers", cService.danhSachGiangVien());
+//        boolean temp = add_fail;
+        mod.addAttribute("add_fail", add_fail);
+        add_fail = false;
         return "create_new_or_edit_course";
     }
     @PostMapping("/all-courses/new-course")
@@ -48,7 +55,10 @@ public class CourseController {
             cService.taoKhoaHocMoi(c);
             return "redirect:/all-courses";
         }
-        else return "message";
+        else{
+            add_fail = true;
+            return "redirect:/all-courses/new-course";
+        }
     }
     @GetMapping("/all-courses/update/{id}")
     public String suaThongTinKhoaHoc(@PathVariable String id, Model mod){
