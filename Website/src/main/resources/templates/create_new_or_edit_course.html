@@ -100,6 +100,7 @@
                 <div class="form-group col-md-12" style="margin-top: 20px">
                     <button type="submit" class="btn btn-primary">Add this course</button>
                 </div>
+                <p class="form-group col-md-12" th:if="${add_fail}" style="color:red">You can't add a new course with an existing id</p>
             </form>
             <form th:if="${situation}=='update'" class="row g-3" th:action="@{/all-courses/update/{id} (id = ${choosencourse.id})}" th:object = "${choosencourse}" method="POST">
                 <h2 class="display-4 py-2 text-truncate col-md-12">UPDATE COURSE</h2>
